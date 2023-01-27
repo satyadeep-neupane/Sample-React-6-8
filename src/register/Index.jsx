@@ -2,10 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import Input from "../common/Input";
 
+import { useNavigate } from "react-router-dom";
+
 function Index(){
     // const [name, setName] = useState("");
     // const [email, setEmail] = useState("");
     // const [password, setPassword] = useState("");
+
+    const nagivate = useNavigate();
   
     const [data, setData] = useState({
         name: "",
@@ -101,11 +105,12 @@ function Index(){
             const result = await axios.post("http://localhost:5000/api/v1/register", data);
             if(result.data.success)
             {
-                setData({
-                    name: "",
-                    email: "",
-                    password: ""
-                })
+                nagivate("/login");
+                // setData({
+                //     name: "",
+                //     email: "",
+                //     password: ""
+                // })
             }
         }catch(err)
         {
